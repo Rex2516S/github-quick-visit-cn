@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>GitHub 加速启动器</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="author" content="kyle_A_10000">
+  <style>
+    :root{--bg:#111;--card:#1e1e1e;--accent:#00c853;--text:#eee}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;display:flex;min-height:100vh;align-items:center;justify-content:center}
+    .container{width:90%;max-width:640px}
+    h1{text-align:center;font-size:2rem;margin-bottom:.5em;background:linear-gradient(135deg,var(--accent),#64dd17);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .card{background:var(--card);border-radius:12px;padding:1.5rem;margin-bottom:1.2rem;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+    .card h2{margin:.2em 0 .8em;font-size:1.2em}
+    pre{background:#0d0d0d;border:1px solid #333;border-radius:6px;padding:1em;white-space:pre-wrap;word-break:break-all;font-size:.95em;line-height:1.4}
+    .btn{display:inline-flex;align-items:center;gap:.4em;background:var(--accent);color:#000;border:none;padding:.6em 1.2em;font-weight:600;border-radius:6px;cursor:pointer;transition:.25s}
+    .btn:hover{transform:scale(1.05)}
+    .tip{font-size:.85em;color:#aaa;margin-top:.6em}
+    /* 底部作者信息 */
+    footer{text-align:center;margin-top:2rem;margin-bottom:1rem;font-size:.8em;color:#666}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>GitHub 加速启动器</h1>
+
+    <!-- Edge -->
+    <div class="card">
+      <h2>Microsoft Edge</h2>
+      <pre id="edge-cmd">& "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --host-rules="MAP github.com octocaptcha.com, MAP github.githubassets.com yelp.com, MAP *.githubusercontent.com githubusercontent.com" --host-resolver-rules="MAP octocaptcha.com 20.27.177.113, MAP yelp.com 199.232.240.116, MAP githubusercontent.com 199.232.176.133"</pre>
+      <button class="btn" onclick="copyCmd('edge-cmd')">复制命令</button>
+      <div class="tip">Win + R 粘贴后回车即可加速访问 GitHub</div>
+    </div>
+
+    <!-- Chrome -->
+    <div class="card">
+      <h2>Google Chrome</h2>
+      <pre id="chrome-cmd">& "C:\Program Files\Google\Chrome\Application\chrome.exe" --host-rules="MAP github.com octocaptcha.com, MAP github.githubassets.com yelp.com, MAP *.githubusercontent.com githubusercontent.com" --host-resolver-rules="MAP octocaptcha.com 20.27.177.113, MAP yelp.com 199.232.240.116, MAP githubusercontent.com 199.232.176.133"</pre>
+      <button class="btn" onclick="copyCmd('chrome-cmd')">复制命令</button>
+      <div class="tip">若路径不同，请手动修改引号内路径后再运行</div>
+    </div>
+  </div>
+
+  <footer>Author: kyle_A_10000</footer>
+
+  <script>
+    function copyCmd(id) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('已复制到剪贴板！');
+      }).catch(err => {
+        prompt('复制失败，请手动选取：', text);
+      });
+    }
+  </script>
+</body>
+</html>
